@@ -5,7 +5,10 @@
         -ejs express-ejs-layouts
     - Dev dependencies
         -nodemon
-[.] Create a server.js file
+[+] Create a server.js file
+[+] Git Setup
+[.] Install Lavavel Mix
+    - Setup JS and CSS preprocessor(scss)
 [.] Create Home page using HTML and CSS
     - include tailwindcss
 [.] Create Cart Page
