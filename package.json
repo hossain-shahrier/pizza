@@ -1,9 +1,14 @@
 {
-  "name": "Pizza Application",
+  "name": "PIZZA-APPLICATION",
   "version": "1.1",
   "description": "Pizza Order Application",
   "main": "index.js",
   "repository": "https://github.com/hossain-shahrier/pizza.git",
   "author": "Shahrier Hossain",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1"
+  }
 }

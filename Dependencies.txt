@@ -1,0 +1,6 @@
+1. Express
+2. Ejs
+3. Express-ejs-layouts
+4. Nodemon
+5. Mongoose
+6. tailwindcss
