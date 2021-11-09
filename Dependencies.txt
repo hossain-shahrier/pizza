@@ -4,3 +4,5 @@
 4. Nodemon
 5. Mongoose
 6. tailwindcss
+7. BodyParser
+8. Cors

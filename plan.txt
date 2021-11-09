@@ -1,5 +1,5 @@
 [+] Create directory structure for the project
-[.] Create a NPM project and install all dependencies
+[+] Create a NPM project and install all dependencies
     - Dependencies
         -Express
         -ejs express-ejs-layouts
