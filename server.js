@@ -10,10 +10,16 @@ const ejs = require("ejs");
 // EJS Express Layouts
 const expressLayouts = require("express-ejs-layouts");
 
-// <---Dependencies--->
-
 // Declare app as an express server
 const app = express();
+
+// <---Assets--->
+
+// express assets
+app.use(express.static(path.join(__dirname, "public")));
+// <---Assets--->
+
+// <---Dependencies--->
 
 // route
 app.get("/", (req, res) => {
