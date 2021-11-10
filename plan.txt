@@ -17,8 +17,8 @@
 [+] Move routes to router folder
 [.] Create dedicated controllers
 [.] Add to cart functionalitiy
-    [.] Fetch all pizzas from DB and show on Home page
-    [.] Create menu model and put dummy data
+    [+] Fetch all pizzas from DB and show on Home page
+    [+] Create menu model and put dummy data
         - connect to MongoDB
         - use connect-mongo for session storage
           - dependencies

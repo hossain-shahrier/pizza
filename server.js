@@ -1,6 +1,7 @@
 // create a new express server
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 // Route module
 const initRoutes = require("./routes/web");
 
@@ -16,7 +17,8 @@ connection
   .on("error", (err) => {
     console.log("MongoDB connection error");
   });
-
+// Session configuration
+app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
