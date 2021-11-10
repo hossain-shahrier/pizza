@@ -3,11 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 // Route module
 const initRoutes = require("./routes/web");
-// <---Dependencies--->
 
 // Database connection
 const url =
-  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/pizza?retryWrites=true&w=majority";
 mongoose.connect(url);
 const connection = mongoose.connection;
 connection
@@ -17,6 +16,7 @@ connection
   .on("error", (err) => {
     console.log("MongoDB connection error");
   });
+
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
