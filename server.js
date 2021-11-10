@@ -1,13 +1,13 @@
 // create a new express server
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 // Route module
 const initRoutes = require("./routes/web");
-// <---Dependencies--->
 
 // Database connection
 const url =
-  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/pizza?retryWrites=true&w=majority";
 mongoose.connect(url);
 const connection = mongoose.connection;
 connection
@@ -17,6 +17,8 @@ connection
   .on("error", (err) => {
     console.log("MongoDB connection error");
   });
+// Session configuration
+app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
