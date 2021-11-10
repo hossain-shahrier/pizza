@@ -44,3 +44,7 @@ section.hero {
   border-color: #fff;
   color: #f8f8f8;
 }
+
+section.cart {
+  background: #f8f8f8;
+}

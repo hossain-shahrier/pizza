@@ -21,11 +21,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // <---Dependencies--->
 
-// route
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
 // <---View Engine--->
 
 // Set Template Engine
@@ -35,6 +30,14 @@ app.set("views", path.join(__dirname, "/resources/views"));
 app.set("view engine", "ejs");
 
 // <---View Engine--->
+
+// route
+app.get("/", (req, res) => {
+  res.render("home");
+});
+app.get("/cart", (req, res) => {
+  res.render("customers/cart");
+});
 
 // <--Port Declaration--->
 
