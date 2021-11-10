@@ -24,6 +24,13 @@ nav li a {
 section.hero {
   background: $secondary;
 }
+.btn-primary {
+  background: $primary;
+  transition: $smooth;
+  &:hover {
+    background: $primary-hover;
+  }
+}
 // Menu Section
 .size {
   background: $secondary;
@@ -37,4 +44,9 @@ section.hero {
     border-color: $pure;
     color: $secondary;
   }
+}
+
+// Cart page
+section.cart {
+  background: $secondary;
 }
