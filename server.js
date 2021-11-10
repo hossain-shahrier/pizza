@@ -32,11 +32,21 @@ app.set("view engine", "ejs");
 // <---View Engine--->
 
 // route
+// Home route
 app.get("/", (req, res) => {
   res.render("home");
 });
+// Cart route
 app.get("/cart", (req, res) => {
   res.render("customers/cart");
+});
+// Login route
+app.get("/login", (req, res) => {
+  res.render("auth/login");
+});
+// Register route
+app.get("/register", (req, res) => {
+  res.render("auth/register");
 });
 
 // <--Port Declaration--->
@@ -46,6 +56,7 @@ const port = process.env.PORT || 3300;
 // listen on port 3000
 app.listen(port, () => {
   console.log(`Listening on PORT: ${port} `);
+  console.log("http://localhost:3300/");
 });
 
 // <--Port Declaration--->

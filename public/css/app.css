@@ -51,3 +51,20 @@ section.cart {
 section.cart .amount {
   color: #fe5f1f;
 }
+
+section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 86px);
+}
+section.login .forget-password {
+  color: #fe5f1f;
+}
+section.login .forget-password:hover {
+  color: #b23301;
+}
+section.login .register-account {
+  color: #fe5f1f;
+}
+section.login .register-account:hover {
+  color: #b23301;
+}
