@@ -53,3 +53,20 @@ section.cart {
     color: $primary;
   }
 }
+// Login page
+section.login {
+  background: $secondary;
+  min-height: calc(100vh - 86px);
+  .forget-password {
+    color: $primary;
+    &:hover {
+      color: $primary-hover;
+    }
+  }
+  .register-account {
+    color: $primary;
+    &:hover {
+      color: $primary-hover;
+    }
+  }
+}
