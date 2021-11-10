@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   color: $dark;
 }
+// Navbar
 nav li:last-child a {
   background: $primary;
   &:hover {
@@ -15,5 +16,25 @@ nav li a {
   transition: $smooth;
   &:hover {
     color: $primary;
+  }
+}
+// Navbar
+
+// Hero Section
+section.hero {
+  background: $secondary;
+}
+// Menu Section
+.size {
+  background: $secondary;
+}
+.add-to-cart {
+  border: 2px solid $primary;
+  color: $primary;
+  transition: $smooth;
+  &:hover {
+    background: $primary;
+    border-color: $pure;
+    color: $secondary;
   }
 }

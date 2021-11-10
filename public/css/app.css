@@ -17,3 +17,22 @@ nav li a {
 nav li a:hover {
   color: #fe5f1f;
 }
+
+section.hero {
+  background: #f8f8f8;
+}
+
+.size {
+  background: #f8f8f8;
+}
+
+.add-to-cart {
+  border: 2px solid #fe5f1f;
+  color: #fe5f1f;
+  transition: all 0.3s ease-in-out;
+}
+.add-to-cart:hover {
+  background: #fe5f1f;
+  border-color: #fff;
+  color: #f8f8f8;
+}
