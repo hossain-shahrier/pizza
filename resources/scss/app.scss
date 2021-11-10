@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   color: $dark;
 }
+// Navbar
 nav li:last-child a {
   background: $primary;
   &:hover {
@@ -16,4 +17,10 @@ nav li a {
   &:hover {
     color: $primary;
   }
+}
+// Navbar
+
+// Hero Section
+section.hero {
+  background: $secondary;
 }
