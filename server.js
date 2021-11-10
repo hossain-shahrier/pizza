@@ -1,8 +1,22 @@
 // create a new express server
 const express = require("express");
-
+const mongoose = require("mongoose");
+// Route module
+const initRoutes = require("./routes/web");
 // <---Dependencies--->
 
+// Database connection
+const url =
+  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.connect(url);
+const connection = mongoose.connection;
+connection
+  .once("open", () => {
+    console.log("MongoDB database connection established successfully");
+  })
+  .on("error", (err) => {
+    console.log("MongoDB connection error");
+  });
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
@@ -10,6 +24,7 @@ const ejs = require("ejs");
 // EJS Express Layouts
 const expressLayouts = require("express-ejs-layouts");
 
+// <---Dependencies--->
 // Declare app as an express server
 const app = express();
 
@@ -18,8 +33,6 @@ const app = express();
 // express assets
 app.use(express.static(path.join(__dirname, "public")));
 // <---Assets--->
-
-// <---Dependencies--->
 
 // <---View Engine--->
 
@@ -32,23 +45,7 @@ app.set("view engine", "ejs");
 // <---View Engine--->
 
 // route
-// Home route
-app.get("/", (req, res) => {
-  res.render("home");
-});
-// Cart route
-app.get("/cart", (req, res) => {
-  res.render("customers/cart");
-});
-// Login route
-app.get("/login", (req, res) => {
-  res.render("auth/login");
-});
-// Register route
-app.get("/register", (req, res) => {
-  res.render("auth/register");
-});
-
+initRoutes(app);
 // <--Port Declaration--->
 
 // port
