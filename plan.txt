@@ -9,11 +9,12 @@
 [+] Git Setup
 [+] Install Lavavel Mix
     - Setup JS and CSS preprocessor(scss)
-[.] Create Home page using HTML and CSS
+[+] Create Home page using HTML and CSS
     - include tailwindcss
-[.] Create Cart Page
+[+] Create Cart Page
     - Order summary section
     - Empty cart section
+[+] Move routes to router folder
 [.] Create Order controller and link it in server.js
 [.] Create Order View with table for customer and admin
 [.] Create Order single page with status
