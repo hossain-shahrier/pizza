@@ -22,6 +22,14 @@ section.hero {
   background: #f8f8f8;
 }
 
+.btn-primary {
+  background: #fe5f1f;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background: #b23301;
+}
+
 .size {
   background: #f8f8f8;
 }

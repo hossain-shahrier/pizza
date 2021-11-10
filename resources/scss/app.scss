@@ -24,6 +24,13 @@ nav li a {
 section.hero {
   background: $secondary;
 }
+.btn-primary {
+  background: $primary;
+  transition: $smooth;
+  &:hover {
+    background: $primary-hover;
+  }
+}
 // Menu Section
 .size {
   background: $secondary;
