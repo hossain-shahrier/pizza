@@ -47,6 +47,11 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(flash());
 // JSON
 app.use(express.json());
+// Globar middleware
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 // express assets
 app.use(express.static(path.join(__dirname, "public")));
 
