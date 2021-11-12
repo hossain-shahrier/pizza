@@ -1,9 +1,14 @@
+require("dotenv").config();
 // create a new express server
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const flash = require("express-flash");
+const MongodbStore = new require("connect-mongo");
+
 // Route module
-const initRoutes = require("./routes/web");
+const initRoutes = require("./routes/web"); // Declare app as an express server
+const app = express();
 
 // Database connection
 const url =
@@ -17,8 +22,20 @@ connection
   .on("error", (err) => {
     console.log("MongoDB connection error");
   });
+
 // Session configuration
-app.use(session({ secret: "secret", resave: true, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, //24 hours
+    // cookie: { maxAge: 1000 * 8 },
+    store: MongodbStore.create({
+      mongoUrl: url,
+    }),
+  })
+);
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
@@ -26,17 +43,12 @@ const ejs = require("ejs");
 // EJS Express Layouts
 const expressLayouts = require("express-ejs-layouts");
 
-// <---Dependencies--->
-// Declare app as an express server
-const app = express();
-
-// <---Assets--->
-
+// Flash
+app.use(flash());
+// JSON
+app.use(express.json());
 // express assets
 app.use(express.static(path.join(__dirname, "public")));
-// <---Assets--->
-
-// <---View Engine--->
 
 // Set Template Engine
 app.use(expressLayouts);
@@ -44,11 +56,8 @@ app.use(expressLayouts);
 app.set("views", path.join(__dirname, "/resources/views"));
 app.set("view engine", "ejs");
 
-// <---View Engine--->
-
 // route
 initRoutes(app);
-// <--Port Declaration--->
 
 // port
 const port = process.env.PORT || 3300;
@@ -57,5 +66,3 @@ app.listen(port, () => {
   console.log(`Listening on PORT: ${port} `);
   console.log("http://localhost:3300/");
 });
-
-// <--Port Declaration--->

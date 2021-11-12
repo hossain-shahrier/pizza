@@ -9,6 +9,7 @@ function initRoutes(app) {
   app.get("/", HomeController().index);
   // Cart route
   app.get("/cart", CartController().index);
+  app.post("/update-cart", CartController().update);
   // Login route
   app.get("/login", AuthController().login);
   // Register route
