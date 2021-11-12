@@ -22,6 +22,9 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
     "mongoose": "^6.0.12",
+    "notie": "^4.3.1",
+    "noty": "^3.2.0-beta-deprecated",
+    "pnotify": "^5.2.0",
     "touch-cli": "^0.0.1"
   },
   "devDependencies": {

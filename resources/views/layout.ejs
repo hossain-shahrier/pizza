@@ -47,7 +47,7 @@
               <span
                 id="cart-counter"
                 class="cart-counter text-white font-bold pr-2"
-                >0</span
+                ><%= session.cart? session.cart.totalQty: '' %></span
               >
               <img src="/img/cart.png" alt=""
             /></a>

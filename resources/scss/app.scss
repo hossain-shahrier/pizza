@@ -1,5 +1,19 @@
 @import "./variables";
+// Before notie is imported:
+$notie-color-success: #57bf57;
+$notie-color-warning: #d6a14d;
+$notie-color-error: #e1715b;
+$notie-color-info: #4d82d6;
+$notie-color-neutral: #a0a0a0;
+// See all overwriteable variables in src/notie.scss
 
+// Then import notie:
+@import "../../node_modules/notie/src/notie";
+.notie-container {
+  font-size: medium;
+  font-style: italic;
+  font-family: "Lato", sans-serif;
+}
 body {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,6 +63,7 @@ section.hero {
 // Cart page
 section.cart {
   background: $secondary;
+  min-height: calc(100vh - 86px);
   .amount {
     color: $primary;
   }

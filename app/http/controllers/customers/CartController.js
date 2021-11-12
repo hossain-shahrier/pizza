@@ -28,6 +28,7 @@ function CartController() {
 
       return res.json({
         totalQty: req.session.cart.totalQty,
+        totalPrice: req.session.cart.totalPrice,
         message: "Cart updated",
       });
     },
