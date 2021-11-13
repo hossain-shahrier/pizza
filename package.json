@@ -25,6 +25,8 @@
     "mongoose": "^6.0.12",
     "notie": "^4.3.1",
     "noty": "^3.2.0-beta-deprecated",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
     "pnotify": "^5.2.0",
     "touch-cli": "^0.0.1"
   },

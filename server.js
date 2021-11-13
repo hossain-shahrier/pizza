@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("express-flash");
 const MongodbStore = new require("connect-mongo");
-
+const passport = require("passport");
 // Route module
 const initRoutes = require("./routes/web"); // Declare app as an express server
 const app = express();
@@ -36,6 +36,13 @@ app.use(
     }),
   })
 );
+
+// Passport config
+const passportInit = require("./app/config/passport");
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Path to the public folder
 const path = require("path");
 // EJS templating engine
@@ -52,6 +59,7 @@ app.use(express.urlencoded({ extended: false }));
 // Globar middleware
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  res.locals.user = req.user;
   next();
 });
 // express assets

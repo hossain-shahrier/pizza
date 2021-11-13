@@ -1,6 +1,6 @@
 const User = require("../../models/user");
 const bcrypt = require("bcrypt");
-
+const passport = require("passport");
 function AuthController() {
   return {
     login: function (req, res) {
@@ -10,7 +10,8 @@ function AuthController() {
       res.render("auth/register");
     },
     logout: function (req, res) {
-      res.render("logout");
+      req.logout();
+      return res.redirect("/");
     },
     postRegister: async function (req, res) {
       const { name, email, password } = req.body;
@@ -39,6 +40,31 @@ function AuthController() {
       ) {
         res.redirect("/");
       });
+    },
+    postLogin: function (req, res, next) {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        req.flash("error", "All fields are required");
+        req.flash("email", email);
+        return res.redirect("/login");
+      }
+      passport.authenticate("local", (err, user, info) => {
+        if (err) {
+          req.flash("error", info.message);
+          return next(err);
+        }
+        if (!user) {
+          req.flash("error", info.message);
+          return res.redirect("/login");
+        }
+        req.logIn(user, (err) => {
+          if (err) {
+            req.flash("error", info.message);
+            return next(err);
+          }
+          return res.redirect("/");
+        });
+      })(req, res, next);
     },
   };
 }
