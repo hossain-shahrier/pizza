@@ -14,6 +14,7 @@ function initRoutes(app) {
   app.get("/login", AuthController().login);
   // Register route
   app.get("/register", AuthController().register);
+  app.post("/register", AuthController().postRegister);
 }
 
 module.exports = initRoutes;

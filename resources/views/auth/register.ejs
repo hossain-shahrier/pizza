@@ -17,7 +17,10 @@
           Register for an account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" action="/register" method="POST">
+        <% if( messages.error ) { %>
+        <span class="text-red-500 text-sm italic"><%= messages.error %></span>
+        <% } %>
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
@@ -26,7 +29,7 @@
               id="name"
               name="name"
               type="text"
-              required
+              value="<%= messages.name %>"
               class="
                 appearance-none
                 rounded-none
@@ -55,8 +58,8 @@
               id="email-address"
               name="email"
               type="email"
+              value="<%= messages.email %>"
               autocomplete="email"
-              required
               class="
                 appearance-none
                 rounded-none
@@ -86,7 +89,6 @@
               name="password"
               type="password"
               autocomplete="current-password"
-              required
               class="
                 appearance-none
                 rounded-none

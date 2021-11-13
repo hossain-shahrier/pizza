@@ -47,6 +47,8 @@ const expressLayouts = require("express-ejs-layouts");
 app.use(flash());
 // JSON
 app.use(express.json());
+//URL Encoded
+app.use(express.urlencoded({ extended: false }));
 // Globar middleware
 app.use((req, res, next) => {
   res.locals.session = req.session;
