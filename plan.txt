@@ -15,8 +15,8 @@
     - Order summary section
     - Empty cart section
 [+] Move routes to router folder
-[.] Create dedicated controllers
-[.] Add to cart functionalitiy
+[+] Create dedicated controllers
+[+] Add to cart functionalitiy
     [+] Fetch all pizzas from DB and show on Home page
     [+] Create menu model and put dummy data
         - connect to MongoDB
@@ -27,7 +27,12 @@
             - dotenv
             - mongoose
     - axios to send ajax request to server
-    - install notification library npm i noty https://ned.im/noty/#/
+[+] Create login page with route    
+[+] Create Register page with route
+[.] Build Register CRUD
+    -dependencies express-flash express-session dotenv
+[.]  Build login using passport
+    -dependencies passport passport-local express-session
 [.] Create Order controller and link it in server.js
 [.] Create Order View with table for customer and admin
 [.] Create Order single page with status

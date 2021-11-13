@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
@@ -24,6 +25,8 @@
     "mongoose": "^6.0.12",
     "notie": "^4.3.1",
     "noty": "^3.2.0-beta-deprecated",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
     "pnotify": "^5.2.0",
     "touch-cli": "^0.0.1"
   },
