@@ -29,9 +29,9 @@
     - axios to send ajax request to server
 [+] Create login page with route    
 [+] Create Register page with route
-[.] Build Register CRUD
+[+] Build Register CRUD
     -dependencies express-flash express-session dotenv
-[.]  Build login using passport
+[+]  Build login using passport
     -dependencies passport passport-local express-session
 [.] Create Order controller and link it in server.js
 [.] Create Order View with table for customer and admin
