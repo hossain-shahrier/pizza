@@ -5,6 +5,7 @@ const HomeController = require("../app/http/controllers/HomeController");
 const AuthController = require("../app/http/controllers/AuthController");
 const guest = require("../app/http/middlewares/guest");
 const OrderController = require("../app/http/controllers/OrderController");
+const auth = require("../app/http/middlewares/auth");
 function initRoutes(app) {
   // Home route
   app.get("/", HomeController().index);
@@ -20,7 +21,10 @@ function initRoutes(app) {
   // Logout route
   app.post("/logout", AuthController().logout);
   // Orders route
-  app.post("/orders", OrderController().store);
+  app.post("/orders", auth, OrderController().store);
+  app.get("/customer/orders", auth, OrderController().index);
+  // Admin route
+  app.post("/admin/orders", auth, OrderController().store);
 }
 
 module.exports = initRoutes;
