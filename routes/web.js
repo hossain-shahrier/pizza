@@ -1,5 +1,4 @@
 // WEB Routes
-
 const CartController = require("../app/http/controllers/customers/CartController");
 const HomeController = require("../app/http/controllers/HomeController");
 const AuthController = require("../app/http/controllers/AuthController");
@@ -10,6 +9,7 @@ const AdminOrderController = require("../app/http/controllers/admin/AdminOrderCo
 const guest = require("../app/http/middlewares/guest");
 const auth = require("../app/http/middlewares/auth");
 const admin = require("../app/http/middlewares/admin");
+const StatusController = require("../app/http/controllers/admin/StatusController");
 
 function initRoutes(app) {
   // Home route
@@ -30,6 +30,7 @@ function initRoutes(app) {
   app.get("/customer/orders", auth, OrderController().index);
   // Admin route
   app.get("/admin/orders", admin, AdminOrderController().index);
+  app.post("/admin/orders/status", admin, StatusController().update);
 }
 
 module.exports = initRoutes;
