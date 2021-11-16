@@ -1,5 +1,6 @@
 const axios = require("axios");
 import notie from "notie";
+import { initAdmin } from "./admin";
 import "@pnotify/core/dist/BrightTheme.css";
 
 // Add to cart
@@ -40,3 +41,5 @@ if (alertMsg) {
     alertMsg.remove();
   }, 3000);
 }
+
+initAdmin();
