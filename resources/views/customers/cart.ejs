@@ -31,45 +31,70 @@
         <span class="amount text-2xl font-bold ml-2">$<%= session.cart.totalPrice %></span>
       </div>
       <div>
-        <form action="" class="mt-4">
-          <input
-            class="border border-gray-400 p-2 ml-2 mb-4"
-            type="text"
-            placeholder="Phone number"
-          />
-          <input
-            class="border border-gray-400 p-2 ml-2 mb-4"
-            type="text"
-            placeholder="Address"
-          />
+        <% if( messages.error ) { %>
+          <span class="text-red-500 text-sm italic mt-4"><%= messages.error %></span>
+          <% } %>
+        <form action="/orders" method="POST" class="mt-2">
+
+          <% if(user) { %>
+            <input
+              name="phone"
+              class="border border-gray-400 p-2 ml-2 mb-4"
+              type="text"
+              
+              placeholder="Phone number"
+            />
+            <input
+              name="address"  
+              class="border border-gray-400 p-2 ml-2 mb-4"
+              type="text"
+              
+              placeholder="Address"
+            />
+          <% } else { %>
+              <input
+                name="phone"
+                class="border border-gray-400 p-2 ml-2 mb-4"
+                type="text"
+                hidden
+                placeholder="Phone number"
+              />
+              <input
+                name="phone"  
+                class="border border-gray-400 p-2 ml-2 mb-4"
+                type="text"
+                hidden
+                placeholder="Address"
+              />
+          <% } %>
+
           <div>
+            <% if(user) { %>
             <button
               type="submit"
               class="btn-primary px-6 py-2 rounded-full font-bold text-white"
             >
               Order Now
             </button>
+            <% } else { %>
+            <a
+            href="/login" 
+            class="         
+            inline-block
+            cursor-pointer
+            btn-primary
+            px-6
+            py-2
+            rounded-full
+            font-bold
+            text-white">Login to continue</a>
+            <% } %>
           </div>
         </form>
       </div>
-      <!-- <a
-        href=""
-        class="
-          inline-block
-          cursor-pointer
-          btn-primary
-          px-6
-          py-2
-          rounded-full
-          font-bold
-          text-white
-        "
-        >Login to continue</a
-      > -->
+   
     </div>
   </div>
-    
-
   </div>
   <% } else { %>
   <div class="empty-cart py-16">

@@ -85,3 +85,9 @@ section.login {
     }
   }
 }
+a.link {
+  color: $primary;
+  &:hover {
+    color: $primary-hover;
+  }
+}

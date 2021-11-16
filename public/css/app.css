@@ -209,3 +209,10 @@ section.login .register-account {
 section.login .register-account:hover {
   color: #b23301;
 }
+
+a.link {
+  color: #fe5f1f;
+}
+a.link:hover {
+  color: #b23301;
+}

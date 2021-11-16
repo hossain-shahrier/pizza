@@ -1,5 +1,6 @@
 const axios = require("axios");
 import notie from "notie";
+import { initAdmin } from "./admin";
 import "@pnotify/core/dist/BrightTheme.css";
 
 // Add to cart
@@ -32,3 +33,13 @@ addToCart.forEach((btn) => {
     updateCart(pizza);
   });
 });
+
+// Remove alert message after 3 seconds
+const alertMsg = document.querySelector("#success-alert");
+if (alertMsg) {
+  setTimeout(() => {
+    alertMsg.remove();
+  }, 3000);
+}
+
+initAdmin();
