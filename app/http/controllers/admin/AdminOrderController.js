@@ -3,7 +3,9 @@ const Order = require("../../../models/order");
 function AdminOrderController() {
   return {
     index: async (req, res) => {
-      await Order.find()
+      await Order.find({ status: { $ne: "completed" } }, null, {
+        sort: { createdAt: -1 },
+      })
         .populate("customerId", "-password")
         .exec((err, orders) => {
           if (req.xhr) {
@@ -16,7 +18,3 @@ function AdminOrderController() {
   };
 }
 module.exports = AdminOrderController;
-
-// { status: { $ne: "completed" } }, null, {
-//   sort: { createdAt: -1 },
-// }
