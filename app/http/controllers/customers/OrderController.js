@@ -1,4 +1,4 @@
-const Order = require("../../models/order");
+const Order = require("../../../models/order");
 const moment = require("moment");
 function OrderController() {
   return {
@@ -38,6 +38,14 @@ function OrderController() {
           req.flash("error", "Something went wrong");
           return res.redirect("/cart");
         });
+    },
+    show: async (req, res) => {
+      const order = await Order.findById(req.params.id);
+      // Authorize user
+      if (req.user._id.toString() === order.customerId.toString()) {
+        return res.render("customers/single-order", { order });
+      }
+      res.redirect("/");
     },
   };
 }
