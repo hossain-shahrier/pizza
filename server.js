@@ -6,6 +6,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const MongodbStore = new require("connect-mongo");
 const passport = require("passport");
+const Emitter = require("events");
 // Route module
 const initRoutes = require("./routes/web"); // Declare app as an express server
 const app = express();
@@ -22,7 +23,9 @@ connection
   .on("error", (err) => {
     console.log("MongoDB connection error");
   });
-
+// Event emittter
+const eventEmitter = new Emitter();
+app.set("eventEmitter", eventEmitter);
 // Session configuration
 app.use(
   session({
@@ -49,6 +52,7 @@ const path = require("path");
 const ejs = require("ejs");
 // EJS Express Layouts
 const expressLayouts = require("express-ejs-layouts");
+const Order = require("./app/models/order");
 
 // Flash
 app.use(flash());
@@ -77,7 +81,24 @@ initRoutes(app);
 // port
 const port = process.env.PORT || 3300;
 // listen on port 3000
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Listening on PORT: ${port} `);
   console.log("http://localhost:3300/");
+});
+// Socket.io
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+  //Join
+  socket.on("join", (orderId) => {
+    console.log(orderId);
+    socket.join(orderId);
+  });
+});
+eventEmitter.on("orderUpdated", (data) => {
+  io.to(`order_${data.id}`).emit("orderUpdated", data);
+});
+
+// Admin
+eventEmitter.on("orderPlaced", (data) => {
+  io.to("adminRoom").emit("orderPlaced", data);
 });

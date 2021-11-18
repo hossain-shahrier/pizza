@@ -51,6 +51,10 @@ let order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
 let time = document.createElement("small");
 function updateStatus(order) {
+  statuses.forEach((status) => {
+    status.classList.remove("step-completed");
+    status.classList.remove("current");
+  });
   let stepCompleted = true;
   statuses.forEach((status) => {
     let dataProp = status.dataset.status;
@@ -69,3 +73,26 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
+// Socket.io
+let socket = io();
+// Join
+if (order) {
+  socket.emit("join", `order_${order._id}`);
+}
+// Admin socket
+let adminAreaPath = window.location.pathname;
+if (adminAreaPath.includes("admin")) {
+  socket.emit("join", "adminRoom");
+}
+socket.on("orderUpdated", (data) => {
+  const updatedOrder = { ...order };
+  updatedOrder.updatedAt = moment().format("hh:mm A");
+  updatedOrder.status = data.status;
+  updateStatus(updatedOrder);
+  notie.alert({
+    position: "top",
+    type: 1,
+    text: `Order status updated`,
+    time: 2,
+  });
+});

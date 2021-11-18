@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import { Socket } from "socket.io";
 
 export function initAdmin() {
   const orderTableBody = document.querySelector("#orderTableBody");
@@ -97,4 +98,15 @@ export function initAdmin() {
       })
       .join("");
   }
+  socket.on("orderPlaced", (order) => {
+    notie.alert({
+      position: "top",
+      type: 1,
+      text: "New order placed",
+      time: 3,
+    });
+    orders.unshift(order);
+    orderTableBody.innerHTML = "";
+    orderTableBody.innerHTML = generateMarkup(orders);
+  });
 }
