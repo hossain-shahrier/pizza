@@ -12,8 +12,7 @@ const initRoutes = require("./routes/web"); // Declare app as an express server
 const app = express();
 
 // Database connection
-const url =
-  "mongodb+srv://root:root@cluster0.l1797.mongodb.net/pizza?retryWrites=true&w=majority";
+const url = process.env.MONGO_CONNECTION_URL;
 mongoose.connect(url);
 const connection = mongoose.connection;
 connection
@@ -77,7 +76,9 @@ app.set("view engine", "ejs");
 
 // route
 initRoutes(app);
-
+app.use((req, res) => {
+  res.status(404).render("errors/404");
+});
 // port
 const port = process.env.PORT || 3300;
 // listen on port 3000
