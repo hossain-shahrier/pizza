@@ -1,7 +1,8 @@
 import axios from "axios";
 import moment from "moment";
+import notie from "notie";
 
-export function initAdmin() {
+export function initAdmin(socket) {
   const orderTableBody = document.querySelector("#orderTableBody");
   let orders = [];
   let markup;
@@ -46,7 +47,7 @@ export function initAdmin() {
             <td class="border px-4 py-2">${order.address}</td>
             <td class="border px-4 py-2">
                 <div class="inline-block relative w-64">
-                    <form action="/admin/order/status" method="POST">
+                    <form action="/admin/orders/status" method="POST">
                         <input type="hidden" name="orderId" value="${
                           order._id
                         }">
@@ -97,4 +98,15 @@ export function initAdmin() {
       })
       .join("");
   }
+  socket.on("orderPlaced", (order) => {
+    notie.alert({
+      position: "top",
+      type: 1,
+      text: "New order placed",
+      time: 3,
+    });
+    orders.unshift(order);
+    orderTableBody.innerHTML = "";
+    orderTableBody.innerHTML = generateMarkup(orders);
+  });
 }

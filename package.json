@@ -29,10 +29,14 @@
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pnotify": "^5.2.0",
+    "socket.io": "^4.4.0",
     "touch-cli": "^0.0.1"
   },
   "devDependencies": {
+    "browserify-fs": "^1.0.0",
     "laravel-mix": "^6.0.39",
+    "laravel-mix-polyfill": "^3.0.1",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "nodemon": "^2.0.14",
     "resolve-url-loader": "4.0.0",
     "sass": "^1.43.4",

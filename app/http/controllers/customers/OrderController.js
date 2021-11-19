@@ -1,4 +1,4 @@
-const Order = require("../../models/order");
+const Order = require("../../../models/order");
 const moment = require("moment");
 function OrderController() {
   return {
@@ -6,7 +6,10 @@ function OrderController() {
       const orders = await Order.find({ customerId: req.user._id }, null, {
         sort: { createdAt: -1 },
       });
-      res.header("Cache-Control", "no-store");
+      res.header(
+        "Cache-Control",
+        "no-cache,private,no-store,must-revalidate,max-stale=0,post-check=0,pre-check=0"
+      );
       res.render("customers/orders", { orders: orders, moment: moment });
     },
     store: function (req, res) {
@@ -25,16 +28,29 @@ function OrderController() {
       });
       order
         .save()
-        .then((order) => {
-          req.flash("success", "Order placed successfully");
-          delete req.session.cart;
-          res.redirect("customer/orders");
+        .then((new_order) => {
+          Order.populate(new_order, { path: "customerId" }, (err, order) => {
+            req.flash("success", "Order placed successfully");
+            delete req.session.cart;
+            // Emit
+            const eventEmitter = req.app.get("eventEmitter");
+            eventEmitter.emit("orderPlaced", order);
+            res.redirect("customer/orders");
+          });
         })
         .catch((err) => {
           console.log(err);
           req.flash("error", "Something went wrong");
           return res.redirect("/cart");
         });
+    },
+    show: async (req, res) => {
+      const order = await Order.findById(req.params.id);
+      // Authorize user
+      if (req.user._id.toString() === order.customerId.toString()) {
+        return res.render("customers/single-order", { order });
+      }
+      res.redirect("/");
     },
   };
 }
