@@ -42,8 +42,6 @@ if (alertMsg) {
   }, 3000);
 }
 
-initAdmin();
-
 // Change order status
 let statuses = document.querySelectorAll(".status_line");
 let hiddenInput = document.querySelector("#hiddenInput");
@@ -75,6 +73,8 @@ function updateStatus(order) {
 updateStatus(order);
 // Socket.io
 let socket = io();
+initAdmin(socket);
+
 // Join
 if (order) {
   socket.emit("join", `order_${order._id}`);

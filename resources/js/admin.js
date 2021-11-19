@@ -1,8 +1,8 @@
 import axios from "axios";
 import moment from "moment";
-import { Socket } from "socket.io";
+import notie from "notie";
 
-export function initAdmin() {
+export function initAdmin(socket) {
   const orderTableBody = document.querySelector("#orderTableBody");
   let orders = [];
   let markup;
